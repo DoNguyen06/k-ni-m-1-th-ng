@@ -1,0 +1,473 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+}
+
+.phase {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.phase.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.phase-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.phase-title h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.phase-title p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Envelope Styles */
+.envelope-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.envelope {
+    width: 350px;
+    height: 250px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+    transform: scale(1.02);
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #2d2d44, #1a1a2e);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.envelope-flap {
+    width: 100%;
+    height: 125px;
+    background: linear-gradient(145deg, #3d3d5c, #2d2d44);
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 10;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    font-size: 1.1rem;
+    z-index: 5;
+    position: relative;
+}
+
+.click-hint {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Ticket Container */
+.ticket-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    animation: fadeIn 0.6s ease-in;
+}
+
+/* Ticket Styles */
+.ticket {
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border: 2px solid #ff6b6b;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+}
+
+.ticket-header {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.movie-banner {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(135deg, #2d2d44, #1a1a2e);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.banner-placeholder {
+    color: #888;
+    text-align: center;
+    padding: 20px;
+}
+
+.banner-placeholder p {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.banner-placeholder small {
+    font-size: 0.8rem;
+}
+
+.movie-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.movie-genre {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    letter-spacing: 2px;
+}
+
+.ticket-body {
+    padding: 20px;
+}
+
+.ticket-info {
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 107, 107, 0.2);
+    color: white;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.value {
+    font-weight: 500;
+}
+
+.ticket-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.barcode {
+    width: 200px;
+    height: 40px;
+    background: white;
+    margin: 0 auto 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.barcode-lines {
+    width: 180px;
+    height: 30px;
+    background: repeating-linear-gradient(
+        90deg,
+        #000 0px,
+        #000 2px,
+        transparent 2px,
+        transparent 4px,
+        #000 4px,
+        #000 6px,
+        transparent 6px,
+        transparent 8px
+    );
+}
+
+.ticket-note {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Love Envelope */
+.love-envelope .envelope-body {
+    background: linear-gradient(145deg, #ff9a9e, #fad0c4);
+}
+
+.love-envelope .envelope-flap {
+    background: linear-gradient(145deg, #ffb6c1, #ff9a9e);
+}
+
+/* Letter Container */
+.letter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    animation: fadeIn 0.6s ease-in;
+}
+
+/* Love Letter Styles */
+.love-letter {
+    width: 100%;
+    max-width: 450px;
+    background: linear-gradient(145deg, #fff5f5, #ffe4e1);
+    border: 2px solid #ff6b6b;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.letter-header {
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.letter-header h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+.letter-date {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.letter-body {
+    padding: 20px;
+}
+
+.letter-content {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.letter-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.love-signature {
+    text-align: right;
+    font-style: italic;
+    color: #ff6b6b;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.memories-section {
+    margin-top: 20px;
+}
+
+.memories-section h3 {
+    color: #ff6b6b;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+}
+
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.memory-photo {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #ffe4e1, #ffc0cb);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px dashed #ff6b6b;
+}
+
+.photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #ff6b6b;
+    text-align: center;
+    padding: 10px;
+}
+
+.photo-placeholder p {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.photo-placeholder small {
+    font-size: 0.7rem;
+}
+
+/* Next Button */
+.next-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+}
+
+.next-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+}
+
+/* Completion Screen */
+.completion-content {
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+}
+
+.completion-content h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.completion-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.heart-animation {
+    font-size: 4rem;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.final-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #ff9ff3;
+    margin-top: 30px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .envelope {
+        width: 300px;
+        height: 220px;
+    }
+    
+    .ticket,
+    .love-letter {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .phase-title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .movie-title {
+        font-size: 1.5rem;
+    }
+}
