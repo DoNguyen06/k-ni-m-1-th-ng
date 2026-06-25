@@ -288,29 +288,58 @@ body {
 /* Love Letter Styles */
 .love-letter {
     width: 100%;
-    max-width: 800px;
-    height: 85vh;
-    min-height: 600px;
+    max-width: 1200px;
+    height: 90vh;
+    min-height: 700px;
     background: linear-gradient(145deg, #fff5f5, #ffe4e1);
-    border: 2px solid #ff6b6b;
-    border-radius: 15px;
+    border: 3px solid #ff6b6b;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+    box-shadow: 0 20px 60px rgba(255, 107, 107, 0.4);
     overflow-y: auto;
+    position: relative;
+}
+
+.love-letter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="50">❤️</text></svg>');
+    opacity: 0.03;
+    pointer-events: none;
+    background-size: 100px 100px;
+    background-repeat: repeat;
 }
 
 .letter-header {
     background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.letter-header::before {
+    content: '💕 💖 💕';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.5;
+    letter-spacing: 20px;
 }
 
 .letter-header h2 {
     font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 5px;
+    font-size: 4rem;
+    margin-bottom: 10px;
     font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .letter-date {
@@ -319,7 +348,26 @@ body {
 }
 
 .letter-body {
-    padding: 30px;
+    padding: 40px;
+    position: relative;
+}
+
+.letter-body::before,
+.letter-body::after {
+    content: '🌸';
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.4;
+}
+
+.letter-body::before {
+    top: 20px;
+    left: 20px;
+}
+
+.letter-body::after {
+    top: 20px;
+    right: 20px;
 }
 
 .letter-content {
@@ -353,24 +401,48 @@ body {
 .memories-section h3 {
     color: #ff6b6b;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-family: 'Great Vibes', cursive;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(255, 107, 107, 0.3);
 }
 
 .memories-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 25px;
+    padding: 0 20px;
 }
 
 .memory-photo {
     aspect-ratio: 1;
     background: linear-gradient(135deg, #ffe4e1, #ffc0cb);
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
-    border: 2px dashed #ff6b6b;
+    border: 3px dashed #ff6b6b;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.memory-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.memory-photo::before {
+    content: '💕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.memory-photo:hover::before {
+    opacity: 0.5;
 }
 
 .photo-placeholder {
@@ -465,13 +537,21 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(22, 33, 62, 0.98));
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100;
-    cursor: pointer;
-    transition: opacity 0.5s ease;
+    cursor: crosshair;
+    transition: opacity 0.8s ease;
+}
+
+#fogCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .fog-overlay.hidden {
@@ -480,34 +560,18 @@ body {
 }
 
 .fog-content {
+    position: relative;
+    z-index: 10;
     text-align: center;
     color: white;
+    pointer-events: none;
 }
 
 .fog-hint {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 20px;
     animation: pulse 2s infinite;
-}
-
-.fog-layer {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-    border-radius: 50%;
-    margin: 0 auto;
-    animation: fogPulse 3s infinite;
-}
-
-@keyframes fogPulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-    }
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
 }
 
 /* Hearts Background for Phase 2 */
@@ -528,24 +592,91 @@ body {
 
 .heart {
     position: absolute;
-    color: rgba(255, 107, 107, 0.3);
-    font-size: 20px;
-    animation: floatHeart 10s infinite;
+    color: rgba(255, 107, 107, 0.4);
+    font-size: 40px;
+    animation: floatHeart 12s infinite;
 }
 
 @keyframes floatHeart {
     0% {
-        transform: translateY(100vh) rotate(0deg);
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
         opacity: 0;
     }
     10% {
-        opacity: 0.5;
+        opacity: 0.6;
+        transform: translateY(80vh) rotate(45deg) scale(1);
+    }
+    50% {
+        transform: translateY(40vh) rotate(180deg) scale(1.2);
     }
     90% {
+        opacity: 0.6;
+        transform: translateY(0vh) rotate(315deg) scale(1);
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Flower Animation */
+.flower {
+    position: absolute;
+    font-size: 35px;
+    animation: floatFlower 15s infinite;
+}
+
+@keyframes floatFlower {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.3);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.5;
+    }
+    85% {
         opacity: 0.5;
     }
     100% {
-        transform: translateY(-100vh) rotate(360deg);
+        transform: translateY(-20vh) rotate(720deg) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* Firework Animation */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
+}
+
+.firework-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: particleExplode 1s ease-out forwards;
+}
+
+@keyframes particleExplode {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
         opacity: 0;
     }
 }
