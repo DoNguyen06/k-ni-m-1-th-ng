@@ -417,6 +417,7 @@ body {
 
 .memory-photo {
     aspect-ratio: 1;
+    min-height: 300px;
     background: linear-gradient(135deg, #ffe4e1, #ffc0cb);
     border-radius: 15px;
     overflow: hidden;
