@@ -287,13 +287,14 @@ body {
 /* Love Letter Styles */
 .love-letter {
     width: 100%;
-    max-width: 450px;
+    max-width: 600px;
+    height: 50vh;
+    min-height: 400px;
     background: linear-gradient(145deg, #fff5f5, #ffe4e1);
     border: 2px solid #ff6b6b;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
-    max-height: 600px;
     overflow-y: auto;
 }
 
@@ -305,8 +306,8 @@ body {
 }
 
 .letter-header h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
     margin-bottom: 5px;
 }
 
@@ -328,7 +329,8 @@ body {
 .letter-content p {
     margin-bottom: 15px;
     text-align: justify;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    font-family: 'Inter', sans-serif;
 }
 
 .love-signature {
@@ -337,6 +339,8 @@ body {
     color: #ff6b6b;
     font-weight: 600;
     margin-top: 20px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
 }
 
 .memories-section {
@@ -347,8 +351,8 @@ body {
     color: #ff6b6b;
     text-align: center;
     margin-bottom: 15px;
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
 }
 
 .memories-grid {
@@ -461,6 +465,7 @@ body {
     .love-letter {
         width: 100%;
         max-width: 320px;
+        height: 60vh;
     }
     
     .phase-title h1 {
