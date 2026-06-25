@@ -1,3 +1,13 @@
+// Phase 1: Fog Overlay
+const fogOverlay = document.getElementById('fogOverlay');
+
+fogOverlay.addEventListener('click', function() {
+    this.classList.add('hidden');
+    setTimeout(() => {
+        this.style.display = 'none';
+    }, 500);
+});
+
 // Phase 1: Movie Ticket Envelope
 const envelope1 = document.getElementById('envelope1');
 const envelopeContainer1 = document.getElementById('envelopeContainer1');
@@ -43,6 +53,9 @@ nextBtn1.addEventListener('click', function() {
     
     phase1.classList.remove('active');
     phase2.classList.add('active');
+    
+    // Start hearts animation for Phase 2
+    createHearts();
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -119,3 +132,22 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Create floating hearts for Phase 2
+function createHearts() {
+    const heartsBackground = document.getElementById('heartsBackground');
+    heartsBackground.innerHTML = '';
+    
+    const heartSymbols = ['❤️', '💕', '💖', '💗', '💓', '💝'];
+    
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 10 + 's';
+        heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heartsBackground.appendChild(heart);
+    }
+}
